@@ -6,440 +6,468 @@
   <title>AttendanceCheck🔆</title>
   <style>
     :root {
-      --bg: #f6f7fb;
+      --bg: #f6f8fc;
       --card: #ffffff;
+      --border: #dbe3f0;
       --text: #172033;
-      --muted: #687385;
-      --border: #d9dfeb;
+      --muted: #667085;
       --accent: #2563eb;
-      --accent-soft: #dbeafe;
       --sun: #f59e0b;
-      --good: #047857;
-      --good-soft: #ecfdf5;
-      --watch: #b45309;
-      --watch-soft: #fffbeb;
-      --support: #b91c1c;
-      --support-soft: #fef2f2;
-      --shadow: 0 12px 32px rgba(15, 23, 42, .08);
+      --green: #047857;
+      --green-soft: #ecfdf5;
+      --yellow: #b45309;
+      --yellow-soft: #fffbeb;
+      --orange: #c2410c;
+      --orange-soft: #fff7ed;
+      --red: #b91c1c;
+      --red-soft: #fef2f2;
+      --shadow: 0 16px 40px rgba(15,23,42,.08);
     }
-
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
+    * {
+      box-sizing: border-box;
     }
-
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(245, 158, 11, .18), transparent 28rem),
-        radial-gradient(circle at top right, rgba(37, 99, 235, .13), transparent 26rem),
-        var(--bg);
       color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(245,158,11,.16), transparent 28rem),
+        radial-gradient(circle at top right, rgba(37,99,235,.12), transparent 26rem),
+        var(--bg);
       line-height: 1.45;
     }
-
     .wrap {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 24px 16px 40px;
+      padding: 24px 14px 40px;
     }
-
     .card {
-      background: linear-gradient(180deg, #ffffff 0%, #fafdff 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
       border: 1px solid var(--border);
       border-top: 7px solid var(--sun);
-      border-radius: 22px;
-      padding: 22px;
+      border-radius: 24px;
+      padding: 24px;
       box-shadow: var(--shadow);
     }
-
     .brandTag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 12px;
       background: #fff7ed;
       color: #9a3412;
-      font-weight: 800;
-      border-radius: 999px;
       padding: 7px 12px;
-      font-size: .86rem;
+      border-radius: 999px;
+      font-size: .84rem;
+      font-weight: 800;
+      margin-bottom: 14px;
     }
-
     h1 {
       margin: 0 0 8px;
-      font-size: clamp(1.7rem, 5vw, 2.45rem);
-      letter-spacing: -.04em;
+      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      letter-spacing: -.05em;
     }
-
     .sub {
       margin: 0;
       color: var(--muted);
-      font-size: 1rem;
       max-width: 760px;
+      font-size: 1rem;
     }
-
-    .schoolDayPill {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 18px 0 0;
-      padding: 12px 14px;
+    .schoolDay {
+      margin-top: 18px;
       border: 1px solid var(--border);
-      background: #f8fafc;
       border-radius: 16px;
+      background: #f8fafc;
+      padding: 12px 14px;
       color: var(--muted);
       font-size: .95rem;
+      display: inline-flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-
-    .schoolDayPill strong {
+    .schoolDay strong {
       color: var(--text);
     }
-
     .sectionTitle {
-      margin: 24px 0 8px;
-      font-size: 1.08rem;
+      margin: 26px 0 8px;
+      font-size: 1.05rem;
       font-weight: 850;
-      letter-spacing: -.01em;
+      letter-spacing: -.02em;
     }
-
     .helper {
       margin: 0 0 12px;
       color: var(--muted);
-      font-size: .95rem;
+      font-size: .94rem;
     }
-
     .inputGrid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 14px;
-      margin: 14px 0 8px;
     }
-
     label {
       display: block;
       font-weight: 800;
       margin-bottom: 6px;
     }
-
     input, textarea {
       width: 100%;
-      padding: 13px 14px;
       border: 1px solid var(--border);
       border-radius: 14px;
-      font-size: 1.05rem;
+      padding: 13px 14px;
+      font-size: 1.04rem;
       background: white;
       color: var(--text);
     }
-
-    textarea {
-      resize: vertical;
-      min-height: 96px;
-      font-family: inherit;
-    }
-
     input:focus, textarea:focus {
-      outline: 4px solid rgba(245, 158, 11, .18);
+      outline: 4px solid rgba(245,158,11,.18);
       border-color: var(--sun);
     }
-
-    .results {
+    .topGrid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 18px;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      margin-top: 20px;
     }
-
-    .resultBox {
+    .projectionHero {
       position: relative;
       overflow: hidden;
+      border-radius: 22px;
+      padding: 22px;
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      background: #ffffff;
-      min-height: 128px;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      transition: background .25s ease, border-color .25s ease;
     }
-
-    .resultBox:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, .07);
+    .projectionHero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 140px;
+      height: 140px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.25);
     }
-
-    .resultBox .label {
-      font-size: .86rem;
-      color: var(--muted);
-      margin-bottom: 7px;
+    .heroLabel {
+      position: relative;
+      z-index: 1;
+      font-size: .9rem;
       font-weight: 800;
+      opacity: .9;
+      margin-bottom: 8px;
     }
-
-    .resultBox .value {
-      font-size: clamp(1.6rem, 4vw, 2.15rem);
+    .heroValue {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(3rem, 9vw, 5rem);
       font-weight: 900;
-      letter-spacing: -.04em;
+      line-height: .9;
+      letter-spacing: -.08em;
     }
-
-    .resultBox .mini {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: .9rem;
+    .heroMini {
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
+      font-size: 1rem;
+      opacity: .95;
     }
-
-    .meterWrap {
-      margin-top: 15px;
+    .healthy {
+      background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 100%);
+      color: var(--green);
     }
-
-    .meterLabel {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      color: var(--muted);
-      font-size: .9rem;
-      margin-bottom: 7px;
+    .watch {
+      background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+      color: var(--yellow);
     }
-
-    .meter {
-      height: 14px;
-      background: #e5e7eb;
-      border-radius: 999px;
-      overflow: hidden;
+    .attention {
+      background: linear-gradient(180deg, #fff7ed 0%, #fed7aa 100%);
+      color: var(--orange);
     }
-
-    .meterFill {
-      height: 100%;
-      width: 0%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #22c55e, #84cc16);
-      transition: width .45s ease;
+    .support {
+      background: linear-gradient(180deg, #fef2f2 0%, #fecaca 100%);
+      color: var(--red);
     }
-
-    .meterFill.watch {
-      background: linear-gradient(90deg, #f59e0b, #fbbf24);
-    }
-
-    .meterFill.support {
-      background: linear-gradient(90deg, #ef4444, #f97316);
-    }
-
-    #message {
-      margin-top: 16px;
-      padding: 15px 16px;
-      border-radius: 16px;
-      font-weight: 800;
-      background: var(--accent-soft);
-      color: #1e3a8a;
-      transition: background .2s ease, color .2s ease;
-    }
-
-    .goodMsg { background: var(--good-soft) !important; color: var(--good) !important; }
-    .watchMsg { background: var(--watch-soft) !important; color: var(--watch) !important; }
-    .supportMsg { background: var(--support-soft) !important; color: var(--support) !important; }
-
-    .scenarioGrid {
+    .statGrid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      margin-top: 14px;
     }
-
-    .scenario {
-      border: 1px solid var(--border);
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 14px;
-    }
-
-    .scenario strong {
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .scenario span {
-      color: var(--muted);
-      font-size: .94rem;
-    }
-
-    .reflection {
+    .stat {
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 16px;
-      background: #fbfdff;
-      margin-top: 16px;
+      background: white;
     }
-
-    .reflection p {
-      margin: 0 0 12px;
+    .stat .label {
       color: var(--muted);
+      font-size: .85rem;
+      font-weight: 800;
+      margin-bottom: 6px;
     }
-
+    .stat .value {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -.05em;
+    }
+    .stat .mini {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 4px;
+    }
+    #message {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      font-weight: 800;
+      line-height: 1.5;
+      transition: all .2s ease;
+    }
+    .projectionPanel {
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      background: #fcfdff;
+    }
+    .toggleRow {
+      display: inline-flex;
+      background: #e5e7eb;
+      padding: 4px;
+      border-radius: 999px;
+      gap: 4px;
+      margin-top: 8px;
+    }
+    .toggleBtn {
+      border: 0;
+      background: transparent;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all .2s ease;
+    }
+    .toggleBtn.active {
+      background: white;
+      color: var(--text);
+      box-shadow: 0 4px 10px rgba(15,23,42,.08);
+    }
+    .sliderWrap {
+      margin-top: 22px;
+    }
+    .sliderTop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .sliderValue {
+      font-weight: 900;
+      font-size: 1.3rem;
+      letter-spacing: -.04em;
+    }
+    input[type="range"] {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      accent-color: var(--accent);
+    }
+    .projectionResult {
+      margin-top: 22px;
+      border-radius: 20px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      background: white;
+      transition: all .25s ease;
+    }
+    .projectionResult .big {
+      font-size: clamp(2.3rem, 6vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: -.06em;
+      margin: 4px 0;
+    }
+    .projectionResult .small {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .reflection {
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      background: #fbfdff;
+    }
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+      font-family: inherit;
+    }
     details {
-      margin-top: 18px;
+      margin-top: 20px;
       border: 1px dashed var(--border);
-      border-radius: 16px;
-      padding: 12px 14px;
+      border-radius: 18px;
+      padding: 14px;
       background: #fafafa;
     }
-
     summary {
       cursor: pointer;
       font-weight: 850;
       color: var(--muted);
     }
-
     .advancedGrid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-top: 14px;
     }
-
-    .note {
-      margin: 16px 0 0;
-      color: var(--muted);
-      font-size: .9rem;
-    }
-
     .buttons {
       display: flex;
       gap: 10px;
-      margin-top: 16px;
       flex-wrap: wrap;
+      margin-top: 18px;
     }
-
     button {
       border: 0;
       border-radius: 12px;
-      padding: 12px 15px;
+      padding: 12px 16px;
+      font-size: 1rem;
       font-weight: 850;
       cursor: pointer;
+    }
+    .primary {
       background: var(--accent);
       color: white;
-      font-size: 1rem;
     }
-
-    button.secondary {
+    .secondary {
       background: #e5e7eb;
       color: #111827;
     }
-
-    @media (max-width: 900px) {
-      .results {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: .9rem;
     }
-
-    @media (max-width: 680px) {
-      .wrap {
-        padding: 14px 10px 30px;
-      }
-
-      .card {
-        padding: 17px;
-        border-radius: 18px;
-      }
-
-      .inputGrid,
-      .results,
-      .scenarioGrid,
-      .advancedGrid {
+    @media (max-width: 860px) {
+      .topGrid {
         grid-template-columns: 1fr;
       }
-
-      .resultBox {
-        min-height: auto;
+    }
+    @media (max-width: 700px) {
+      .inputGrid,
+      .advancedGrid,
+      .statGrid {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 18px;
+      }
+      .wrap {
+        padding: 14px 10px 28px;
       }
     }
-
     @media print {
-      body { background: white; }
-      .card { box-shadow: none; }
-      .buttons, details { display: none; }
-      textarea { min-height: 70px; }
+      body {
+        background: white;
+      }
+      .card {
+        box-shadow: none;
+      }
+      details,
+      .buttons {
+        display: none;
+      }
     }
   </style>
 </head>
-
 <body>
   <main class="wrap">
-    <section class="card" aria-labelledby="title">
-      <div class="brandTag">Student Attendance Planning Tool</div>
-      <h1 id="title">AttendanceCheck🔆</h1>
-      <p class="sub">Check your attendance pace, see how many days are left in your attendance buffer, and think about one small step that could help this week.</p>
-
-      <div class="schoolDayPill" id="schoolDayPill">
-        <span>Calendar:</span>
-        <strong id="calendarStatus">Loading...</strong>
+    <section class="card">
+      <div class="brandTag">Student Attendance Reflection Tool</div>
+      <h1>AttendanceCheck🔆</h1>
+      <p class="sub">
+        Understand your current attendance pace, explore how weekly attendance patterns can affect the rest of the year, and think about one small step that could help this week.
+      </p>
+      <div class="schoolDay">
+        <span>Calendar status:</span>
+        <strong id="schoolDayText">Loading...</strong>
       </div>
-
       <div class="sectionTitle">Enter your absences</div>
-      <p class="helper">Use your student portal. Enter full-day absences only. The app will total them for you.</p>
-
+      <p class="helper">
+        Use your student portal. Enter full-day absences only.
+      </p>
       <div class="inputGrid">
         <div>
           <label for="unexcused">Unexcused absences</label>
-          <input id="unexcused" type="number" min="0" max="180" step="1" inputmode="numeric" placeholder="Example: 3" />
+          <input id="unexcused" type="number" min="0" max="180" step="1" placeholder="Example: 2" />
         </div>
         <div>
           <label for="excused">Excused absences</label>
-          <input id="excused" type="number" min="0" max="180" step="1" inputmode="numeric" placeholder="Example: 2" />
+          <input id="excused" type="number" min="0" max="180" step="1" placeholder="Example: 3" />
         </div>
       </div>
-
-      <div class="results" aria-live="polite">
-        <div class="resultBox">
-          <div class="label">Current Attendance</div>
-          <div id="attendanceRate" class="value">—</div>
-          <div id="attendanceMini" class="mini">Enter your absences.</div>
+      <div class="topGrid">
+        <div id="heroCard" class="projectionHero healthy">
+          <div class="heroLabel">Projected year-end absences</div>
+          <div id="heroValue" class="heroValue">—</div>
+          <div id="heroMini" class="heroMini">Enter your absences to begin.</div>
         </div>
-
-        <div class="resultBox">
-          <div class="label">Unexcused Buffer</div>
-          <div id="unexcusedBuffer" class="value">—</div>
-          <div class="mini">before reaching 10</div>
-          <div class="meterWrap">
-            <div class="meterLabel"><span>Used</span><span id="unexcusedUsedLabel">0 / 10</span></div>
-            <div class="meter"><div id="unexcusedMeter" class="meterFill"></div></div>
+        <div class="statGrid">
+          <div class="stat">
+            <div class="label">Current attendance</div>
+            <div id="attendanceRate" class="value">—</div>
+            <div id="attendanceMini" class="mini">Attendance percentage</div>
           </div>
-        </div>
-
-        <div class="resultBox">
-          <div class="label">Total Buffer</div>
-          <div id="totalBuffer" class="value">—</div>
-          <div class="mini">before reaching 20</div>
-          <div class="meterWrap">
-            <div class="meterLabel"><span>Used</span><span id="totalUsedLabel">0 / 20</span></div>
-            <div class="meter"><div id="totalMeter" class="meterFill"></div></div>
+          <div class="stat">
+            <div class="label">Current pace</div>
+            <div id="paceValue" class="value">—</div>
+            <div class="mini">projected absences per month</div>
           </div>
-        </div>
-
-        <div class="resultBox">
-          <div class="label">If This Pace Continues</div>
-          <div id="projectedAbsences" class="value">—</div>
-          <div id="projectedMini" class="mini">projected year-end absences</div>
+          <div class="stat">
+            <div class="label">Total buffer remaining</div>
+            <div id="totalBuffer" class="value">—</div>
+            <div class="mini">before reaching 20</div>
+          </div>
+          <div class="stat">
+            <div class="label">Unexcused buffer remaining</div>
+            <div id="unexcusedBuffer" class="value">—</div>
+            <div class="mini">before reaching 10</div>
+          </div>
         </div>
       </div>
-
-      <div id="message">Enter your absences to see your attendance picture.</div>
-
-      <div class="sectionTitle">What if this pattern changes?</div>
-      <p class="helper">These quick checks show how small attendance choices can add up over time.</p>
-
-      <div class="scenarioGrid" id="scenarioGrid" aria-live="polite"></div>
-
+      <div id="message" class="healthy"></div>
+      <div class="projectionPanel">
+        <div class="sectionTitle" style="margin-top:0;">Try a different weekly pattern</div>
+        <p class="helper">
+          Explore how different weekly attendance patterns could affect the rest of the year.
+        </p>
+        <div class="toggleRow">
+          <button class="toggleBtn active" id="monthBtn" type="button">Next month</button>
+          <button class="toggleBtn" id="yearBtn" type="button">Rest of year</button>
+        </div>
+        <div class="sliderWrap">
+          <div class="sliderTop">
+            <div>
+              <strong>Days missed per week from now on</strong>
+            </div>
+            <div id="sliderValue" class="sliderValue">0 days/week</div>
+          </div>
+          <input id="weeklySlider" type="range" min="0" max="5" value="0" step="1" />
+        </div>
+        <div id="projectionResult" class="projectionResult">
+          <div class="small">If this pattern continued...</div>
+          <div id="projectionBig" class="big">—</div>
+          <div id="projectionSmall" class="small">Projected total absences</div>
+        </div>
+      </div>
       <div class="reflection">
         <div class="sectionTitle" style="margin-top:0;">Think about this week</div>
-        <p>What is one thing that could help your attendance this week?</p>
-        <textarea id="reflectionText" placeholder="Example: Set an alarm across the room, ask for a ride earlier, talk to someone if mornings have been hard..."></textarea>
+        <p class="helper">
+          What is one thing that could help your attendance this week?
+        </p>
+        <textarea placeholder="Example: Go to sleep earlier, ask for help with transportation, check in with someone if mornings have been stressful..."></textarea>
       </div>
-
       <div class="buttons">
-        <button type="button" onclick="window.print()">Print</button>
-        <button type="button" class="secondary" onclick="clearForm()">Clear</button>
+        <button class="primary" type="button" onclick="window.print()">Print</button>
+        <button class="secondary" type="button" onclick="clearForm()">Clear</button>
       </div>
-
       <details>
         <summary>Advanced / testing settings</summary>
         <div class="advancedGrid">
@@ -449,256 +477,177 @@
           </div>
           <div>
             <label for="closingDays">Emergency closing days used</label>
-            <input id="closingDays" type="number" min="0" max="5" step="1" value="0" />
+            <input id="closingDays" type="number" min="0" max="5" value="0" />
           </div>
           <div>
-            <label for="schoolDayOverride">School day # override</label>
-            <input id="schoolDayOverride" type="number" min="0" max="180" step="1" placeholder="Optional" />
+            <label for="overrideDay">School day override</label>
+            <input id="overrideDay" type="number" min="0" max="183" placeholder="Optional" />
           </div>
         </div>
-        <p class="note">The built-in calendar assumes the approved 2026–2027 calendar. If emergency closings affect the daily count, use the school day override for exact testing.</p>
       </details>
-
-      <p class="note">Unexcused absences count toward the 10-day unexcused limit. Excused and unexcused absences together count toward the 20-day total absence limit.</p>
+      <p class="note">
+        Unexcused absences count toward the 10-day unexcused limit. Excused and unexcused absences together count toward the 20-day total absence limit.
+      </p>
     </section>
   </main>
-
   <script>
-    const BASE_SCHOOL_DAYS = ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-08", "2026-09-09", "2026-09-10", "2026-09-11", "2026-09-14", "2026-09-15", "2026-09-16", "2026-09-17", "2026-09-18", "2026-09-22", "2026-09-23", "2026-09-24", "2026-09-25", "2026-09-28", "2026-09-29", "2026-09-30", "2026-10-01", "2026-10-02", "2026-10-05", "2026-10-06", "2026-10-07", "2026-10-08", "2026-10-09", "2026-10-12", "2026-10-13", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-20", "2026-10-21", "2026-10-22", "2026-10-23", "2026-10-26", "2026-10-27", "2026-10-28", "2026-10-29", "2026-10-30", "2026-11-09", "2026-11-10", "2026-11-11", "2026-11-12", "2026-11-13", "2026-11-16", "2026-11-17", "2026-11-18", "2026-11-19", "2026-11-20", "2026-11-23", "2026-11-24", "2026-11-25", "2026-11-30", "2026-12-01", "2026-12-02", "2026-12-03", "2026-12-04", "2026-12-07", "2026-12-08", "2026-12-09", "2026-12-10", "2026-12-11", "2026-12-14", "2026-12-15", "2026-12-16", "2026-12-17", "2026-12-18", "2026-12-21", "2026-12-22", "2026-12-23", "2027-01-05", "2027-01-06", "2027-01-07", "2027-01-08", "2027-01-11", "2027-01-12", "2027-01-13", "2027-01-14", "2027-01-15", "2027-01-19", "2027-01-20", "2027-01-21", "2027-01-22", "2027-01-25", "2027-01-26", "2027-01-27", "2027-01-28", "2027-01-29", "2027-02-01", "2027-02-02", "2027-02-03", "2027-02-04", "2027-02-05", "2027-02-08", "2027-02-09", "2027-02-10", "2027-02-11", "2027-02-12", "2027-02-16", "2027-02-17", "2027-02-18", "2027-02-19", "2027-02-22", "2027-02-23", "2027-02-24", "2027-02-25", "2027-02-26", "2027-03-01", "2027-03-02", "2027-03-03", "2027-03-04", "2027-03-08", "2027-03-09", "2027-03-10", "2027-03-11", "2027-03-12", "2027-03-15", "2027-03-16", "2027-03-17", "2027-03-18", "2027-03-19", "2027-03-22", "2027-03-23", "2027-03-24", "2027-03-25", "2027-04-05", "2027-04-06", "2027-04-07", "2027-04-08", "2027-04-09", "2027-04-12", "2027-04-13", "2027-04-14", "2027-04-15", "2027-04-16", "2027-04-19", "2027-04-20", "2027-04-21", "2027-04-22", "2027-04-23", "2027-04-26", "2027-04-27", "2027-04-28", "2027-04-29", "2027-04-30", "2027-05-03", "2027-05-04", "2027-05-05", "2027-05-06", "2027-05-07", "2027-05-10", "2027-05-11", "2027-05-12", "2027-05-13", "2027-05-14", "2027-05-17", "2027-05-18", "2027-05-19", "2027-05-20", "2027-05-21", "2027-05-24", "2027-05-25", "2027-05-26", "2027-06-01", "2027-06-02", "2027-06-03", "2027-06-04", "2027-06-07", "2027-06-08", "2027-06-09", "2027-06-10", "2027-06-11", "2027-06-14", "2027-06-15", "2027-06-16", "2027-06-17", "2027-06-18"];
-    const MAKEUP_DAYS = ["2027-05-27", "2027-05-28", "2027-06-21", "2027-06-22", "2027-06-23"];
-    const TOTAL_STUDENT_DAYS = 180;
-    const UNEXCUSED_LIMIT = 10;
+    const TOTAL_DAYS = 180;
     const TOTAL_LIMIT = 20;
-
+    const UNEXCUSED_LIMIT = 10;
     const unexcusedInput = document.getElementById('unexcused');
     const excusedInput = document.getElementById('excused');
-    const testDateInput = document.getElementById('testDate');
-    const closingDaysInput = document.getElementById('closingDays');
-    const schoolDayOverrideInput = document.getElementById('schoolDayOverride');
-
-    const calendarStatus = document.getElementById('calendarStatus');
+    const schoolDayText = document.getElementById('schoolDayText');
+    const heroCard = document.getElementById('heroCard');
+    const heroValue = document.getElementById('heroValue');
+    const heroMini = document.getElementById('heroMini');
     const attendanceRate = document.getElementById('attendanceRate');
     const attendanceMini = document.getElementById('attendanceMini');
-    const unexcusedBuffer = document.getElementById('unexcusedBuffer');
+    const paceValue = document.getElementById('paceValue');
     const totalBuffer = document.getElementById('totalBuffer');
-    const projectedAbsences = document.getElementById('projectedAbsences');
-    const projectedMini = document.getElementById('projectedMini');
+    const unexcusedBuffer = document.getElementById('unexcusedBuffer');
     const message = document.getElementById('message');
-    const scenarioGrid = document.getElementById('scenarioGrid');
-
-    const unexcusedMeter = document.getElementById('unexcusedMeter');
-    const totalMeter = document.getElementById('totalMeter');
-    const unexcusedUsedLabel = document.getElementById('unexcusedUsedLabel');
-    const totalUsedLabel = document.getElementById('totalUsedLabel');
-
-    function todayISO() {
-      const now = new Date();
-      const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-      return local.toISOString().slice(0, 10);
+    const slider = document.getElementById('weeklySlider');
+    const sliderValue = document.getElementById('sliderValue');
+    const projectionBig = document.getElementById('projectionBig');
+    const projectionSmall = document.getElementById('projectionSmall');
+    const projectionResult = document.getElementById('projectionResult');
+    const monthBtn = document.getElementById('monthBtn');
+    const yearBtn = document.getElementById('yearBtn');
+    let mode = 'month';
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
     }
-
-    function getActiveCalendar() {
-      const used = clampInt(Number(closingDaysInput.value || 0), 0, 5);
-      const makeupToInclude = MAKEUP_DAYS.slice(0, used);
-      return Array.from(new Set([...BASE_SCHOOL_DAYS, ...makeupToInclude])).sort();
-    }
-
-    function getCurrentDateISO() {
-      return testDateInput.value || todayISO();
-    }
-
-    function getElapsedSchoolDays() {
-      const override = Number(schoolDayOverrideInput.value);
-      if (schoolDayOverrideInput.value !== '' && !Number.isNaN(override)) {
-        return clampInt(override, 0, TOTAL_STUDENT_DAYS);
-      }
-
-      const activeCalendar = getActiveCalendar();
-      const currentDate = getCurrentDateISO();
-      return activeCalendar.filter(day => day <= currentDate).length;
-    }
-
-    function getNumber(input) {
-      const value = Number(input.value);
-      if (input.value === '' || Number.isNaN(value)) return null;
-      return value;
-    }
-
-    function clampInt(value, min, max) {
-      return Math.min(max, Math.max(min, Math.round(value)));
-    }
-
     function formatPercent(value) {
-      if (!Number.isFinite(value)) return '—';
       return value.toFixed(1) + '%';
     }
-
-    function setMessage(text, className) {
-      message.textContent = text;
-      message.className = className || '';
+    function getElapsedDays() {
+      const override = Number(document.getElementById('overrideDay').value);
+      if (document.getElementById('overrideDay').value !== '') {
+        return clamp(override, 0, 183);
+      }
+      const testDate = document.getElementById('testDate').value;
+      if (testDate) {
+        const start = new Date('2026-09-01');
+        const now = new Date(testDate);
+        const diff = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+        return clamp(Math.floor(diff * (5/7)), 0, TOTAL_DAYS);
+      }
+      return 0;
     }
-
-    function setMeter(element, used, limit) {
-      const pct = Math.min(100, Math.max(0, (used / limit) * 100));
-      element.style.width = pct + '%';
-      element.classList.remove('watch', 'support');
-
-      if (pct >= 100) element.classList.add('support');
-      else if (pct >= 70) element.classList.add('watch');
+    function setHeroState(state) {
+      heroCard.className = 'projectionHero ' + state;
+      message.className = state;
+      projectionResult.className = 'projectionResult ' + state;
     }
-
-    function getTone(used, limit) {
-      const ratio = used / limit;
-      if (ratio >= 1) return 'supportMsg';
-      if (ratio >= .7) return 'watchMsg';
-      return 'goodMsg';
+    function calculateProjection(totalAbsences, elapsed) {
+      if (elapsed <= 0) return 0;
+      return Math.ceil((totalAbsences / elapsed) * TOTAL_DAYS);
     }
-
-    function scenarioCard(title, addedAbsences, elapsedDays, totalAbsences, totalBufferLeft) {
-      const newTotal = totalAbsences + addedAbsences;
-      const newBuffer = TOTAL_LIMIT - newTotal;
-      const projected = elapsedDays > 0
-        ? Math.ceil((newTotal / Math.max(1, elapsedDays + addedAbsences)) * TOTAL_STUDENT_DAYS)
-        : newTotal;
-      const projectedAttendance = ((TOTAL_STUDENT_DAYS - projected) / TOTAL_STUDENT_DAYS) * 100;
-
-      let line = `Total absences would be ${newTotal}.`;
-      if (newBuffer >= 0) {
-        line += ` Total buffer left: ${newBuffer}.`;
-      } else {
-        line += ` This is ${Math.abs(newBuffer)} over the 20-day total limit.`;
-      }
-
-      return `
-        <div class="scenario">
-          <strong>${title}</strong>
-          <span>${line} If that pace continued, year-end attendance would be about ${formatPercent(projectedAttendance)}.</span>
-        </div>
-      `;
+    function getState(projected) {
+      if (projected <= 12) return 'healthy';
+      if (projected <= 18) return 'watch';
+      if (projected <= 20) return 'attention';
+      return 'support';
     }
-
-    function updateCalendarStatus(elapsed) {
-      const dateISO = getCurrentDateISO();
-      const activeCalendar = getActiveCalendar();
-      const first = activeCalendar[0];
-      const last = activeCalendar[activeCalendar.length - 1];
-
-      if (dateISO < first && schoolDayOverrideInput.value === '') {
-        calendarStatus.textContent = `School has not started yet. First student day: Sept. 1, 2026.`;
-        return;
-      }
-
-      if (dateISO > last && schoolDayOverrideInput.value === '') {
-        calendarStatus.textContent = `The school year is complete. 180 student days were scheduled.`;
-        return;
-      }
-
-      calendarStatus.textContent = `School day ${elapsed} of ${TOTAL_STUDENT_DAYS}.`;
-    }
-
-    function calculate() {
-      const elapsed = getElapsedSchoolDays();
-      updateCalendarStatus(elapsed);
-
-      const unexcused = getNumber(unexcusedInput);
-      const excused = getNumber(excusedInput);
-
-      attendanceRate.textContent = '—';
-      attendanceMini.textContent = 'Enter your absences.';
-      unexcusedBuffer.textContent = '—';
-      totalBuffer.textContent = '—';
-      projectedAbsences.textContent = '—';
-      projectedMini.textContent = 'projected year-end absences';
-      scenarioGrid.innerHTML = '';
-      setMeter(unexcusedMeter, 0, UNEXCUSED_LIMIT);
-      setMeter(totalMeter, 0, TOTAL_LIMIT);
-      unexcusedUsedLabel.textContent = '0 / 10';
-      totalUsedLabel.textContent = '0 / 20';
-
-      if (unexcused === null || excused === null) {
-        setMessage('Enter both absence numbers to see your attendance picture.', '');
-        return;
-      }
-
-      if (unexcused < 0 || excused < 0) {
-        setMessage('Absences cannot be negative. Check the numbers and try again.', 'supportMsg');
-        return;
-      }
-
-      if (!Number.isInteger(unexcused) || !Number.isInteger(excused)) {
-        setMessage('Use whole numbers for full-day absences.', 'watchMsg');
-        return;
-      }
-
-      const totalAbsences = unexcused + excused;
-
-      if (elapsed > 0 && totalAbsences > elapsed) {
-        setMessage(`You entered ${totalAbsences} total absences, but only ${elapsed} school days have happened. Check the numbers or use the test date setting.`, 'watchMsg');
-        return;
-      }
-
-      const unexcusedLeft = UNEXCUSED_LIMIT - unexcused;
-      const totalLeft = TOTAL_LIMIT - totalAbsences;
-
-      unexcusedBuffer.textContent = unexcusedLeft >= 0 ? unexcusedLeft : `+${Math.abs(unexcusedLeft)}`;
-      totalBuffer.textContent = totalLeft >= 0 ? totalLeft : `+${Math.abs(totalLeft)}`;
-
-      unexcusedUsedLabel.textContent = `${unexcused} / ${UNEXCUSED_LIMIT}`;
-      totalUsedLabel.textContent = `${totalAbsences} / ${TOTAL_LIMIT}`;
-      setMeter(unexcusedMeter, unexcused, UNEXCUSED_LIMIT);
-      setMeter(totalMeter, totalAbsences, TOTAL_LIMIT);
-
+    function update() {
+      const elapsed = getElapsedDays();
+      schoolDayText.textContent = elapsed > 0
+        ? `School day ${elapsed} of 180`
+        : 'Use the test date setting to simulate the school year.';
+      const unexcused = Number(unexcusedInput.value || 0);
+      const excused = Number(excusedInput.value || 0);
+      const total = unexcused + excused;
+      totalBuffer.textContent = TOTAL_LIMIT - total;
+      unexcusedBuffer.textContent = UNEXCUSED_LIMIT - unexcused;
       if (elapsed <= 0) {
         attendanceRate.textContent = '—';
-        attendanceMini.textContent = `${totalAbsences} total absences entered.`;
-        projectedAbsences.textContent = totalAbsences;
-        projectedMini.textContent = 'before school starts';
-        setMessage('Use the test date setting to try the calculator during the school year.', '');
+        heroValue.textContent = '—';
+        heroMini.textContent = 'Enter a test date to begin.';
+        paceValue.textContent = '—';
+        message.textContent = 'Use the testing settings to explore attendance patterns during the school year.';
         return;
       }
-
-      const currentAttendance = ((elapsed - totalAbsences) / elapsed) * 100;
+      const currentAttendance = ((elapsed - total) / elapsed) * 100;
       attendanceRate.textContent = formatPercent(currentAttendance);
-      attendanceMini.textContent = `${totalAbsences} total absence${totalAbsences === 1 ? '' : 's'} entered.`;
-
-      const projectedTotal = Math.ceil((totalAbsences / elapsed) * TOTAL_STUDENT_DAYS);
-      const projectedAttendance = ((TOTAL_STUDENT_DAYS - projectedTotal) / TOTAL_STUDENT_DAYS) * 100;
-      projectedAbsences.textContent = projectedTotal;
-      projectedMini.textContent = `${formatPercent(projectedAttendance)} year-end attendance`;
-
-      let mainTone = getTone(totalAbsences, TOTAL_LIMIT);
-      if (unexcused >= UNEXCUSED_LIMIT || totalAbsences >= TOTAL_LIMIT) mainTone = 'supportMsg';
-
-      if (unexcusedLeft < 0 || totalLeft < 0) {
-        setMessage('You may want to check in with a trusted adult about attendance support and next steps.', 'supportMsg');
-      } else if (unexcusedLeft <= 2 || totalLeft <= 4) {
-        setMessage('Small changes now could help protect your attendance goals later this year.', 'watchMsg');
-      } else {
-        setMessage('You still have attendance flexibility. Keep paying attention to your pace as the year continues.', mainTone);
+      const projected = calculateProjection(total, elapsed);
+      const projectedAttendance = ((TOTAL_DAYS - projected) / TOTAL_DAYS) * 100;
+      heroValue.textContent = projected;
+      heroMini.textContent = `${formatPercent(projectedAttendance)} projected attendance`;
+      const monthlyPace = ((total / elapsed) * 20).toFixed(1);
+      paceValue.textContent = monthlyPace;
+      const state = getState(projected);
+      setHeroState(state);
+      if (state === 'healthy') {
+        message.innerHTML = `
+          Your current attendance pattern is in a healthy range.<br><br>
+          If this pace continues, you may finish the year with about ${projected} absences.
+        `;
       }
-
-      scenarioGrid.innerHTML = [
-        scenarioCard('If I miss 1 more day this week', 1, elapsed, totalAbsences, totalLeft),
-        scenarioCard('If I miss 2 more days this week', 2, elapsed, totalAbsences, totalLeft),
-        scenarioCard('If I miss 1 day per week for the next month', 4, elapsed, totalAbsences, totalLeft),
-        scenarioCard('If I miss 2 days per week for the next month', 8, elapsed, totalAbsences, totalLeft)
-      ].join('');
+      if (state === 'watch') {
+        message.innerHTML = `
+          Your current attendance pace is starting to add up.<br><br>
+          If this pattern continues, it could lead to about ${projected} absences this year.<br>
+          Small changes now could help protect your attendance goals later in the year.
+        `;
+      }
+      if (state === 'attention') {
+        message.innerHTML = `
+          Your current attendance pattern is getting close to your attendance goals for the year.<br><br>
+          If this pace continues, it could become harder to stay on track later in the year.
+        `;
+      }
+      if (state === 'support') {
+        message.innerHTML = `
+          Your current attendance pattern may make it harder to reach your attendance goals this year.<br><br>
+          If this pace continued, it could lead to about ${projected} absences.<br>
+          Reaching out for support early can make a big difference.
+        `;
+      }
+      updateProjectionTool(total, elapsed);
     }
-
+    function updateProjectionTool(total, elapsed) {
+      const weekly = Number(slider.value);
+      sliderValue.textContent = `${weekly} ${weekly === 1 ? 'day' : 'days'}/week`;
+      let addedAbsences = 0;
+      if (mode === 'month') {
+        addedAbsences = weekly * 4;
+      } else {
+        const remainingDays = TOTAL_DAYS - elapsed;
+        const remainingWeeks = remainingDays / 5;
+        addedAbsences = Math.round(weekly * remainingWeeks);
+      }
+      const projectedTotal = total + addedAbsences;
+      const projectedAttendance = ((TOTAL_DAYS - projectedTotal) / TOTAL_DAYS) * 100;
+      projectionBig.textContent = projectedTotal;
+      projectionSmall.textContent = `Projected total absences • ${formatPercent(projectedAttendance)} attendance`;
+      const state = getState(projectedTotal);
+      projectionResult.className = 'projectionResult ' + state;
+    }
     function clearForm() {
       unexcusedInput.value = '';
       excusedInput.value = '';
-      document.getElementById('reflectionText').value = '';
-      calculate();
-      unexcusedInput.focus();
+      slider.value = 0;
+      document.querySelector('textarea').value = '';
+      update();
     }
-
-    [unexcusedInput, excusedInput, testDateInput, closingDaysInput, schoolDayOverrideInput].forEach(input => {
-      input.addEventListener('input', calculate);
-      input.addEventListener('change', calculate);
+    [unexcusedInput, excusedInput, slider,
+     document.getElementById('testDate'),
+     document.getElementById('overrideDay')].forEach(el => {
+      el.addEventListener('input', update);
     });
-
-    calculate();
+    monthBtn.addEventListener('click', () => {
+      mode = 'month';
+      monthBtn.classList.add('active');
+      yearBtn.classList.remove('active');
+      update();
+    });
+    yearBtn.addEventListener('click', () => {
+      mode = 'year';
+      yearBtn.classList.add('active');
+      monthBtn.classList.remove('active');
+      update();
+    });
+    update();
   </script>
 </body>
 </html>
